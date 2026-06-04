@@ -10,7 +10,7 @@ export default function Home() {
   ];
 
   const {data} = useGetUsersQuery('users');
-  console.log(data)
+  
 
   return (
     <div className="space-y-6 text-right">

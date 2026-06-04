@@ -10,6 +10,7 @@ export default function DashboardLayout() {
   const location = useLocation();
 
 
+
   const sidebarItems = [
     { name: "الرئيسية", path: "/home", icon: LayoutDashboard },
     { name: "إدارة المنتجات", path: "/products", icon: ShoppingBag },
@@ -30,17 +31,6 @@ export default function DashboardLayout() {
     "/users": "User permissions",
     "/settings": "Advanced system appearance settings",
   };
-
-  useEffect(()=> {
-    window.addEventListener('keypress',(e:KeyboardEvent) => {
-        console.log(e.key,e.ctrlKey);
-        // if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'b') {
-        //   event.preventDefault(); // منع السلوك الافتراضي للمتصفح إن وجد
-        //   setIsOpen((prev) => !prev); // عكس حالة القائمة (فتح / إغلاق)
-        // }
-    })
-  },[])
-
 
   return (
     <SidebarProvider>

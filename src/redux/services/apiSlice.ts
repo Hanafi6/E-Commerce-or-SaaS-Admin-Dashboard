@@ -2,13 +2,23 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const apiSlice = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/' }),
-  tagTypes: ['Product', 'Order', 'User', 'Notification'], // لتحديث البيانات تلقائياً عند التعديل
+  baseQuery: async (args, api, extraOptions) => {
+  
+    const result = await fetchBaseQuery({
+      baseUrl: "http://127.0.0.1:5000/",
+    })(args, api, extraOptions)
+  
+    return result
+  },
+  tagTypes: ['Products', 'Order', 'User', 'Notification'],
   endpoints: (builder) => ({
     // 1. Products Endpoints
     getProducts: builder.query({
-      query: () => 'products',
-      providesTags: ['Product'],
+      query: () => ({
+        url: 'products',
+        method: 'GET',
+      }),
+      providesTags: ['Products'],
     }),
     addProduct: builder.mutation({
       query: (newProduct) => ({
@@ -35,6 +45,7 @@ export const apiSlice = createApi({
     }),
   }),
 });
+
 
 export const {
   useGetProductsQuery,
