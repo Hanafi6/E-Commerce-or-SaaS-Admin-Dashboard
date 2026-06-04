@@ -6,7 +6,7 @@ export const orderApi = createApi({
   reducerPath: "orderApi",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:5000/",
+    baseUrl: "http://localhost:4000/api",
   }),
 
   endpoints: (builder) => ({
