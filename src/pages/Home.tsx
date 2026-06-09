@@ -1,16 +1,13 @@
 import { useGetUsersQuery } from "@/redux/services/apiSlice";
 import { DollarSign, ShoppingBag, Users, ArrowUpRight } from "lucide-react";
 
-export default function Home() {
-  // كروت داتا سريعة للمعاينة
-  const stats = [
-    { title: "إجمالي المبيعات", value: "$45,231.89", change: "+12.5%", icon: DollarSign },
-    { title: "الطلبات النشطة", value: "+3,245", change: "+8.2%", icon: ShoppingBag },
-    { title: "العملاء الجدد", value: "+1,240", change: "-2.1%", icon: Users },
-  ];
+const stats = [
+  { title: "إجمالي المبيعات", value: "$45,231.89", change: "+12.5%", icon: DollarSign },
+  { title: "الطلبات النشطة", value: "+3,245", change: "+8.2%", icon: ShoppingBag },
+  { title: "العملاء الجدد", value: "+1,240", change: "-2.1%", icon: Users },
+];
 
-  const {data} = useGetUsersQuery('users');
-  
+export default function Home() {
 
   return (
     <div className="space-y-6 text-right">
@@ -28,9 +25,8 @@ export default function Home() {
               <div className="space-y-1">
                 <p className="text-xs font-medium text-muted-foreground">{stat.title}</p>
                 <h3 className="text-xl font-bold text-foreground m-0 tracking-tight">{stat.value}</h3>
-                <span className={`inline-flex items-center gap-0.5 text-[11px] font-medium px-2 py-0.5 rounded-full ${
-                  stat.change.startsWith("+") ? "bg-emerald-500/10 text-emerald-500" : "bg-destructive/10 text-destructive"
-                }`}>
+                <span className={`inline-flex items-center gap-0.5 text-[11px] font-medium px-2 py-0.5 rounded-full ${stat.change.startsWith("+") ? "bg-emerald-500/10 text-emerald-500" : "bg-destructive/10 text-destructive"
+                  }`}>
                   <ArrowUpRight className="w-3 h-3" /> {stat.change}
                 </span>
               </div>

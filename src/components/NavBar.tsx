@@ -1,14 +1,13 @@
 import { Sun, Moon, Bell } from "lucide-react";
-import { useState, useEffect } from "react";
-import { SidebarTrigger } from "./ui/sidebar";
+import React, { useState, useEffect } from "react";
 
 interface NavbarProps {
   pageTitle: string;
 }
 
-export default function Navbar({ pageTitle }: NavbarProps) {
+function Navbar({ pageTitle }: NavbarProps) {
   const [isDark, setIsDark] = useState<boolean>(() => {
-    return localStorage.getItem("app-mode") === "dark" || 
+    return localStorage.getItem("app-mode") === "dark" ||
       (!localStorage.getItem("app-mode") && window.matchMedia("(prefers-color-scheme: dark)").matches);
   });
 
@@ -32,8 +31,8 @@ export default function Navbar({ pageTitle }: NavbarProps) {
 
       <div className="flex items-center gap-3">
 
-        <button 
-          onClick={() => setIsDark(!isDark)} 
+        <button
+          onClick={() => setIsDark(!isDark)}
           className="p-2 rounded-lg border border-border hover:bg-muted text-foreground cursor-pointer transition-colors"
         >
           {isDark ? <Sun className="w-4 h-4 text-amber-500" /> : <Moon className="w-4 h-4 text-primary" />}
@@ -49,3 +48,6 @@ export default function Navbar({ pageTitle }: NavbarProps) {
     </div>
   );
 }
+
+
+export default React.memo(Navbar)

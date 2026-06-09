@@ -1,10 +1,8 @@
-import { useGetOrdersQuery } from "@/redux/services/orderSlice";
+// import { useGetOrdersQuery } from "@/redux/services/orderSlice";
 import { ClipboardList, ArrowUpRight, CheckCircle2, Clock } from "lucide-react";
-import { useEffect } from "react";
 
 export default function OdrersPage() {
-  const { data, isError, isLoading } = useGetOrdersQuery("");
-  console.log({ data, isError, isLoading });
+  // const { data, isError, isLoading } = useGetOrdersQuery("");
 
   return (
     <div className="space-y-6">

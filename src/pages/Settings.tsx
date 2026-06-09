@@ -1,37 +1,16 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Check, Palette } from "lucide-react";
-
-interface ColorTheme {
-  id: string;
-  name: string;
-  preview: string;
-  className: string;
-}
-
-const COLOR_THEMES: ColorTheme[] = [
-  { id: "default", name: "النمط الرمادي الافتراضي", preview: "oklch(0.205 0 0)", className: "" },
-  { id: "ocean", name: "ثيم الأزرق المريح (Ocean Breeze)", preview: "oklch(0.614 0.222 254.8)", className: "theme-ocean" },
-  { id: "emerald", name: "ثيم الأخضر الزمردي (Emerald Garden)", preview: "oklch(0.627 0.194 149.2)", className: "theme-emerald" },
-  { id: "orange", name: "ثيم البرتقالي الدافئ (Retro Orange)", preview: "oklch(0.646 0.222 41.1)", className: "theme-orange" },
-];
+import { COLOR_THEMES, saveColorTheme } from "@/lib/theme";
 
 export default function Settings() {
   const [activeTheme, setActiveTheme] = useState<string>(() => {
     return localStorage.getItem("app-color-theme") || "default";
   });
 
-  useEffect(() => {
-    const root = document.documentElement;
-    COLOR_THEMES.forEach((t) => {
-      if (t.className) root.classList.remove(t.className);
-    });
-
-    const current = COLOR_THEMES.find((t) => t.id === activeTheme);
-    if (current && current.className) {
-      root.classList.add(current.className);
-    }
-    localStorage.setItem("app-color-theme", activeTheme);
-  }, [activeTheme]);
+  const handleThemeChange = (themeId: string) => {
+    setActiveTheme(themeId);
+    saveColorTheme(themeId);
+  };
 
   return (
     <div className="max-w-2xl mx-auto bg-card border border-border rounded-2xl p-6 text-right">
@@ -47,7 +26,7 @@ export default function Settings() {
           return (
             <button
               key={theme.id}
-              onClick={() => setActiveTheme(theme.id)}
+              onClick={() => handleThemeChange(theme.id)}
               className={`p-4 rounded-xl border text-right flex items-center justify-between transition-all cursor-pointer ${
                 isSelected ? "border-primary bg-primary/5 font-semibold" : "border-border hover:bg-muted"
               }`}

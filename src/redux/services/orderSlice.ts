@@ -6,7 +6,7 @@ export const orderApi = createApi({
   reducerPath: "orderApi",
 
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api",
+    baseUrl: "https://6a215c52b1d0aaf32b4f4801.mockapi.io/",
   }),
 
   endpoints: (builder) => ({

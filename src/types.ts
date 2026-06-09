@@ -1,6 +1,8 @@
 import { store } from "@/redux/store";
 
+import { Table as TableInstance } from "@tanstack/react-table"; // 💡 import للـ type
 
+// import { ColumnFiltersState } from "@tanstack/react-table";
 // ─── الـ Model الأساسي للمستخدم ───────────────────
 // export interface IUser {
 //     id: string | number
@@ -37,59 +39,72 @@ export type RootState = ReturnType<typeof store.getState>;
 
 // 👤 1. تايب المستخدم (User)
 export interface User {
-    id: number;
-    name: string;
-    email: string;
-    role: string;
-    status: boolean;
-    avatar: string;
-    password?: string; // اختياري عشان الأمان لو مش هتحتاجها في الـ UI
-  }
-  
-  // 📦 2. تايب المنتج (Product)
-  export interface Product {
-    id: number;
-    name: string;
-    price: number;
-    image: string; // بيدعم الـ Base64 أو الـ URLs عادي
-    category: string;
-    stock: number;
-  }
-  
-  // 🛒 3. تايب الطلب (Order)
-  export interface Order {
-    id: number;
-    userId: number;
-    totalPrice: number;
-    customerName: string;
-    time: string; // '1/18/2026'
-    status: "Success" | "Failed" | "Pending" | string; // كتبنا الستيتس الشائعة مع مرونة الـ string
-  }
-  
-  // 🔔 4. تايب التنبيهات (Notification)
-  export interface Notification {
-    id: number;
-    type: "user" | "order" | "system" | string;
-    message: string;
-    isRead: boolean;
-    time: string;
-  }
-  
-  // 🌍 5. تايب الـ API Responses الموحد (للـ Pagination والـ Meta)
-  export interface ApiResponse<T> {
-    data: T[];
-    meta: {
-      totalCount: number;
-      page: number;
-      pageSize: number;
-      totalPages: number;
-    };
-  }
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  status: boolean;
+  avatar: string;
+  password?: string;
+}
 
-  // الـ Args المتوقعة للـ Queries (مثل الفلترة والـ Pagination)
+
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  category: string;
+  stock: number;
+}
+
+// 🛒 3. تايب الطلب (Order)
+export interface Order {
+  id: number;
+  userId: number;
+  totalPrice: number;
+  customerName: string;
+  time: string; // '1/18/2026'
+  status: "Success" | "Failed" | "Pending" | string; // كتبنا الستيتس الشائعة مع مرونة الـ string
+}
+
+// 🔔 4. تايب التنبيهات (Notification)
+export interface Notification {
+  id: number;
+  type: "user" | "order" | "system" | string;
+  message: string;
+  isRead: boolean;
+  time: string;
+}
+
+// 🌍 5. تايب الـ API Responses الموحد (للـ Pagination والـ Meta)
+export interface ApiResponse<T> {
+  data: T[];
+  meta: {
+    totalCount: number;
+    page: number;
+    pageSize: number;
+    totalPages: number;
+  };
+}
+
 export interface QueryArgs {
-    page?: number;
-    search?: string;
-    category?: string;
-    userId?: number;
-  }
+  page?: number;
+  search?: string;
+  category?: string;
+  userId?: number;
+}
+
+// interface ITable<TData> {
+//   getState: () => {
+//     columnFilters: ColumnFiltersState;
+//   };
+//   getColumn: (id: string) => {
+//     getFilterValue: () => unknown;
+//     setFilterValue: (value: unknown) => void;
+//   } | undefined;
+// }
+
+export interface ITable<TData> {
+  table: TableInstance<TData>
+}
