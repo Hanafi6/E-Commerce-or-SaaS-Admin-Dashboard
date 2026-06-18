@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { Product, Order, User, Notification, QueryArgs } from "@/types";
+import { Product, QueryArgs } from "@/types";
 
 export const apiSlice = createApi({
   reducerPath: "ProductsApi",
   baseQuery: async (args, api, extraOptions) => {
     const result = await fetchBaseQuery({
-      baseUrl: "https://6a2157b4b1d0aaf32b4f4137.mockapi.io", // 👈 تنظيف الـ URL
+      baseUrl: import.meta.env.VITE_PRODUCTS_API,
     })(args, api, extraOptions);
 
     return result;

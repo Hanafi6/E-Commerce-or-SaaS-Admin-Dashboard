@@ -1,2 +1,0 @@
-export let endpointone: string = 'https://6a2157b4b1d0aaf32b4f4137.mockapi.io/';// users - products
-export let endpointTwo: string = 'https://6a215c52b1d0aaf32b4f4801.mockapi.io/' // orders - notifications

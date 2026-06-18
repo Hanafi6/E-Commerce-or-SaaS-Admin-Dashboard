@@ -5,7 +5,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const orderApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://6a215c52b1d0aaf32b4f4801.mockapi.io/",
+    baseUrl: import.meta.env.VITE_ORDERS_API,
   }),
   tagTypes: ["Orders"],
   endpoints: (builder) => ({
@@ -23,7 +23,6 @@ export const orderApi = createApi({
         };
       },
       keepUnusedDataFor: 0,
-      // 👈 ربط الـ Endpoint بالـ Tag عشان الـ Caching والـ Auto-invalidate يشتغلوا صح
       providesTags: (result) =>
         result
           ? [

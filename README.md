@@ -26,8 +26,8 @@ npm i
 npm run dev 
 
 data at 
- 'https://6a2157b4b1d0aaf32b4f4137.mockapi.io/' =>// users - products
- 'https://6a215c52b1d0aaf32b4f4801.mockapi.io/' => // orders - notifications
+ VITE_PRODUCTS_API =>// users - products
+ VITE_ORDERS_API => // orders - notifications
 
  MockApi.io
 

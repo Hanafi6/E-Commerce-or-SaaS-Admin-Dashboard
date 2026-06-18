@@ -5,7 +5,7 @@ export const usersSlice = createApi({
     reducerPath: "usersApi",
     baseQuery: async (args, api, extraOptions) => {
         const result = await fetchBaseQuery({
-            baseUrl: "https://6a2157b4b1d0aaf32b4f4137.mockapi.io", // 👈 شيلنا الـ / من هنا
+            baseUrl: import.meta.env.VITE_PRODUCTS_API,
         })(args, api, extraOptions);
 
         return result;
