@@ -31,7 +31,7 @@ function UserFormDialog() {
         try {
             await createUser(data).unwrap()
             form.reset()
-            setOpen(false) 
+            setOpen(false)
         } catch (error) {
             console.error("فشل في إضافة المستخدم:", error)
         }
@@ -47,7 +47,7 @@ function UserFormDialog() {
                 <DialogHeader>
                     <DialogTitle className="text-foreground">إضافة مستخدم جديد</DialogTitle>
                 </DialogHeader>
-                
+
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                         <FormField
@@ -63,7 +63,7 @@ function UserFormDialog() {
                                 </FormItem>
                             )}
                         />
-                        
+
                         <FormField
                             control={form.control}
                             name="email"
@@ -101,13 +101,13 @@ export default function UsersDashboard() {
 
     const renderedUsers = useMemo(() => {
         if (!users || !users.data) return null
-        
+
         return users.data.map((user) => (
             // الكلاسات هنا بتعتمد على الـ border و الـ hover:bg-accent بتاعة ثيم شاد سي ان
             <tr key={user.id} className="border-b border-border hover:bg-accent/50 transition-colors">
-                <td className="p-3 font-medium text-right text-foreground">{user.name}</td>
-                <td className="p-3 text-right text-muted-foreground">{user.email}</td>
-                <td className="p-3 text-sm text-right text-muted-foreground">
+                <td className="p-3 font-medium text-start text-foreground">{user.name}</td>
+                <td className="p-3 text-start text-muted-foreground">{user.email}</td>
+                <td className="p-3 text-sm text-start text-muted-foreground">
                     <span className="px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground">
                         {user.role}
                     </span>
@@ -138,9 +138,9 @@ export default function UsersDashboard() {
                 <table className="w-full border-collapse">
                     <thead className="bg-muted text-muted-foreground font-semibold text-sm border-b border-border">
                         <tr>
-                            <th className="p-3 text-right">الاسم</th>
-                            <th className="p-3 text-right">الإيميل</th>
-                            <th className="p-3 text-right">الصلاحية</th>
+                            <th className="p-3 text-start">الاسم</th>
+                            <th className="p-3 text-start">الإيميل</th>
+                            <th className="p-3 text-start">الصلاحية</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -154,19 +154,19 @@ export default function UsersDashboard() {
             </div>
 
             <div className="flex justify-end items-center space-x-2 space-x-reverse pt-2">
-                <Button 
-                    variant="outline" 
+                <Button
+                    variant="outline"
                     className="border-border text-foreground hover:bg-accent"
-                    onClick={() => setPage(p => Math.max(p - 1, 1))} 
+                    onClick={() => setPage(p => Math.max(p - 1, 1))}
                     disabled={page === 1}
                 >
                     السابق
                 </Button>
                 <span className="flex items-center px-4 font-medium text-sm text-foreground">صفحة {page} من {users?.pages || 1}</span>
-                <Button 
-                    variant="outline" 
+                <Button
+                    variant="outline"
                     className="border-border text-foreground hover:bg-accent"
-                    onClick={() => setPage(p => p + 1)} 
+                    onClick={() => setPage(p => p + 1)}
                     disabled={!users || page >= users.pages}
                 >
                     التالي

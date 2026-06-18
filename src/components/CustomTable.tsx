@@ -70,7 +70,7 @@ export function CustomTable<TData>({
                                     <TableHead
                                         key={header.id}
                                         colSpan={header.colSpan}
-                                        className="whitespace-nowrap text-right font-bold text-muted-foreground border-l border-border last:border-l-0 h-10 px-4 text-xs"
+                                        className="whitespace-nowrap text-start font-bold text-muted-foreground border-l border-border last:border-l-0 h-10 px-4 text-xs"
                                     >
                                         {header.isPlaceholder ? null : (
                                             <div
@@ -107,7 +107,7 @@ export function CustomTable<TData>({
                                 {row.getVisibleCells().map((cell) => (
                                     <TableCell
                                         key={cell.id}
-                                        className="border-l border-border last:border-l-0 py-2.5 px-4 text-xs text-foreground font-medium text-right max-w-[220px] truncate"
+                                        className="border-l border-border last:border-l-0 py-2.5 px-4 text-xs text-foreground font-medium text-start max-w-[220px] truncate"
                                         title={String(cell.getValue() ?? "")}
                                     >
                                         {flexRender(cell.column.columnDef.cell, cell.getContext())}

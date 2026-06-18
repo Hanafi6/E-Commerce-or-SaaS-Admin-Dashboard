@@ -1,16 +1,36 @@
-# React + Vite
+# Ahmed's Analytics Dashboard 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A high-performance, production-ready Admin Dashboard built with React 19, TypeScript, and SOLID principles. Designed for scalability, maintainability, and seamless user experience.
 
-Currently, two official plugins are available:
+## 🛠 Tech Stack
+- **Framework:** React 19 + TypeScript (Vite 8)
+- **Styling:** Tailwind CSS v4 + shadcn/ui
+- **State:** Redux Toolkit + RTK Query
+- **Tables:** TanStack React Table v8
+- **Charts:** Chart.js + react-chartjs-2
+- **Validation:** React Hook Form + Zod
+- **I18n:** i18next (AR/EN Support)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🏗 Architecture Highlights
+- **Container/Presentation Pattern:** Strict separation between business logic and UI.
+- **Generic Components:** Highly reusable `CustomTable`, `SearchBar`, and `DashboardHeader`.
+- **Performance:** Optimized with Prefetching, Lazy Loading, and Memoized Selectors.
+- **Solid Principles:** Built for modularity and easy expansion.
 
-## React Compiler
+## 🚧 Roadmap
+- ✅ **Phase 1:** Core Architecture, Analytics, & Theme System.
+- 🚧 **Phase 2 (In Progress):** Administrative CRUD operations (Dynamic Product/User Management).
+- 💡 **Phase 3:** Advanced User Roles & Permission System.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+npm i 
+npm run dev 
 
-## Expanding the ESLint configuration
+data at 
+ 'https://6a2157b4b1d0aaf32b4f4137.mockapi.io/' =>// users - products
+ 'https://6a215c52b1d0aaf32b4f4801.mockapi.io/' => // orders - notifications
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ MockApi.io
+
+ All services are equipped
+---
+*Built by Ahmed.*

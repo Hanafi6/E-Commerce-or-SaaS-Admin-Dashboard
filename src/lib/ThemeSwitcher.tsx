@@ -39,7 +39,7 @@ export default function ThemeSwitcher() {
 
   useEffect(() => {
     const root = document.documentElement;
-    
+
     // بنشيل الكلاسات القديمة تماماً عشان مينزلش كذا ثيم فوق بعض
     SYSTEM_THEMES.forEach(theme => {
       if (theme.className) root.classList.remove(theme.className);
@@ -50,7 +50,7 @@ export default function ThemeSwitcher() {
     if (currentTheme && currentTheme.className) {
       root.classList.add(currentTheme.className);
     }
-    
+
     localStorage.setItem('app-theme', activeTheme);
   }, [activeTheme]);
 
@@ -65,12 +65,12 @@ export default function ThemeSwitcher() {
       <PopoverContent className="w-64 p-3 bg-popover text-popover-foreground border-border shadow-lg rounded-xl" align="start" dir="rtl">
         <div className="space-y-2">
           <div>
-            <h3 className="font-bold text-sm text-foreground text-right">أنماط ألوان مريحة للعين</h3>
-            <p className="text-[11px] text-muted-foreground text-right">اختار النمط اللي يريح عيونك أثناء العمل</p>
+            <h3 className="font-bold text-sm text-foreground text-start">أنماط ألوان مريحة للعين</h3>
+            <p className="text-[11px] text-muted-foreground text-start">اختار النمط اللي يريح عيونك أثناء العمل</p>
           </div>
-          
+
           <hr className="border-border" />
-          
+
           <div className="space-y-1">
             {SYSTEM_THEMES.map((theme) => {
               const isSelected = activeTheme === theme.id;
@@ -78,11 +78,10 @@ export default function ThemeSwitcher() {
                 <button
                   key={theme.id}
                   onClick={() => setActiveTheme(theme.id)}
-                  className={`w-full text-right text-xs p-2.5 rounded-lg flex items-center justify-between transition-all ${
-                    isSelected 
-                      ? 'bg-primary text-primary-foreground font-semibold shadow-sm' 
+                  className={`w-full text-start text-xs p-2.5 rounded-lg flex items-center justify-between transition-all ${isSelected
+                      ? 'bg-primary text-primary-foreground font-semibold shadow-sm'
                       : 'hover:bg-muted text-foreground'
-                  }`}
+                    }`}
                 >
                   <div className="flex items-center gap-2">
                     <span className="w-3.5 h-3.5 rounded-full shrink-0 border border-black/10" style={{ backgroundColor: theme.preview }} />

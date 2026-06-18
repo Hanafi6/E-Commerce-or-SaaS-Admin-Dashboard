@@ -1,0 +1,53 @@
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { QueryArgs, User } from "@/types";
+
+export const usersSlice = createApi({
+    reducerPath: "usersApi",
+    baseQuery: async (args, api, extraOptions) => {
+        const result = await fetchBaseQuery({
+            baseUrl: "https://6a2157b4b1d0aaf32b4f4137.mockapi.io", // 👈 شيلنا الـ / من هنا
+        })(args, api, extraOptions);
+
+        return result;
+    },
+    tagTypes: ["Users"],
+    endpoints: (builder) => ({
+        getUsers: builder.query<User[], QueryArgs | void>({
+            query: (params) => {
+                const isGetAll = params?.all
+
+                return {
+                    url: "/users", // 👈 حطينا الـ / هنا صريحة
+                    method: "GET",
+                    params: {
+                        page: isGetAll ? undefined : (params?.page || 1),
+                        limit: isGetAll ? undefined : 10,
+                        search: params?.search || undefined,
+                    },
+                }
+            },
+            providesTags: (result) =>
+                result
+                    ? [
+                        ...result.map(({ id }) => ({ type: "Users" as const, id })),
+                        { type: "Users", id: "LIST" },
+                    ]
+                    : [{ type: "Users", id: "LIST" }],
+        }),
+
+        addUser: builder.mutation<User, Omit<User, "id">>({
+            query: (newUser) => ({
+                url: "/users",
+                method: "POST",
+                body: newUser,
+            }),
+            // 👈 أول ما الـ Mutation دي تنجح، الـ RTK Query هيفهم إن الـ LIST اتمسحت وهيجيب الجديد أوتوماتيك
+            invalidatesTags: [{ type: "Users", id: "LIST" }],
+        })
+    }),
+});
+
+export const {
+    useAddUserMutation,
+    useGetUsersQuery,
+} = usersSlice;

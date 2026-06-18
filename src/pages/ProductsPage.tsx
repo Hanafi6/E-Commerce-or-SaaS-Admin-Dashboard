@@ -83,7 +83,7 @@ import ProductsPageContiner from "@/components/ProductsContainer"
 //         {/* 4. عرض الجدول عند نجاح جلب البيانات */}
 //         {!isLoading && !isError && products.length > 0 && (
 //           <div className="overflow-x-auto">
-//             <table className="w-full text-right text-xs border-collapse">
+//             <table className="w-full text-start text-xs border-collapse">
 //               <thead>
 //                 <tr className="border-b border-border text-muted-foreground font-medium">
 //                   <th className="pb-3 pt-2 font-semibold">المعرف (ID)</th>

@@ -43,6 +43,7 @@ export default function ProductsPageContainer() {
         { skip: isArabicSearch }
     );
 
+
     const shouldCheckNextPage = !isArabicSearch && products.length === PAGE_LIMIT;
 
     const { data: nextPageProducts } = useGetProductsQuery(
@@ -76,24 +77,23 @@ export default function ProductsPageContainer() {
     const displayProducts = isArabicSearch ? [] : products;
 
     return (
-        <div>
-            <ProductsPageUI
-                products={displayProducts}
-                isLoading={isLoading && !isArabicSearch}
-                isFetching={isFetching && !isArabicSearch}
-                isError={isError}
-                onRefetch={refetch}
-                error={error}
-                currentPage={page}
-                onPageChange={handlePageChange}
-                isFirstPage={isArabicSearch ? true : isFirstPage}
-                isLastPage={isArabicSearch ? true : isLastPage}
-                totalCount={isArabicSearch ? 0 : totalCount}
-                totalPages={isArabicSearch ? 1 : totalPages}
-                onSearchChange={handleSearchChange}
-                searchQuery={debouncedSearch}
-                isArabicSearch={isArabicSearch}
-            />
-        </div>
+        <ProductsPageUI
+            products={displayProducts}
+            isLoading={isLoading && !isArabicSearch}
+            isFetching={isFetching && !isArabicSearch}
+            isError={isError}
+            onRefetch={refetch}
+            error={error}
+            currentPage={page}
+            onPageChange={handlePageChange}
+            isFirstPage={isArabicSearch ? true : isFirstPage}
+            isLastPage={isArabicSearch ? true : isLastPage}
+            totalCount={isArabicSearch ? 0 : totalCount}
+            totalPages={isArabicSearch ? 1 : totalPages}
+            onSearchChange={handleSearchChange}
+            searchQuery={debouncedSearch}
+            isArabicSearch={isArabicSearch}
+        />
+
     );
 }

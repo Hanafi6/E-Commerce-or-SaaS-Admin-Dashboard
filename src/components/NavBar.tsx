@@ -1,5 +1,7 @@
 import { Sun, Moon, Bell } from "lucide-react";
 import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+
 
 interface NavbarProps {
   pageTitle: string;
@@ -39,10 +41,12 @@ function Navbar({ pageTitle }: NavbarProps) {
         </button>
 
 
-        <button className="p-2 rounded-lg border border-border hover:bg-muted text-foreground relative cursor-pointer">
+        <Link
+          to='/notifications'
+          className="p-2  rounded-lg border border-border hover:bg-muted text-foreground relative cursor-pointer">
           <Bell className="w-4 h-4" />
           <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-destructive rounded-full" />
-        </button>
+        </Link>
 
       </div>
     </div>

@@ -1,17 +1,36 @@
 // orderApi.ts
-
+import { Order, QueryArgs } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const orderApi = createApi({
-  reducerPath: "orderApi",
-
+  reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "https://6a215c52b1d0aaf32b4f4801.mockapi.io/",
   }),
-
+  tagTypes: ["Orders"],
   endpoints: (builder) => ({
-    getOrders: builder.query({
-      query: () => "orders",
+    getOrders: builder.query<Order[], QueryArgs | void>({
+      query: (params) => {
+        return {
+          url: "orders",
+          method: "GET",
+          params: {
+            page: params?.page || 1,
+            //   search: params?.search || undefined,
+            //   // تقدر تضيف باقي الفلاتر هنا عشان الـ MockAPI يفلتر الداتا من السيرفر
+            //   status: params?.status || undefined,
+          },
+        };
+      },
+      keepUnusedDataFor: 0,
+      // 👈 ربط الـ Endpoint بالـ Tag عشان الـ Caching والـ Auto-invalidate يشتغلوا صح
+      providesTags: (result) =>
+        result
+          ? [
+            ...result.map(({ id }) => ({ type: "Orders" as const, id })),
+            { type: "Orders", id: "LIST" },
+          ]
+          : [{ type: "Orders", id: "LIST" }],
     }),
   }),
 });

@@ -36,8 +36,6 @@ import { Table as TableInstance } from "@tanstack/react-table"; // 💡 import �
 // }
 
 export type RootState = ReturnType<typeof store.getState>;
-
-// 👤 1. تايب المستخدم (User)
 export interface User {
   id: number;
   name: string;
@@ -58,7 +56,6 @@ export interface Product {
   stock: number;
 }
 
-// 🛒 3. تايب الطلب (Order)
 export interface Order {
   id: number;
   userId: number;
@@ -68,7 +65,6 @@ export interface Order {
   status: "Success" | "Failed" | "Pending" | string; // كتبنا الستيتس الشائعة مع مرونة الـ string
 }
 
-// 🔔 4. تايب التنبيهات (Notification)
 export interface Notification {
   id: number;
   type: "user" | "order" | "system" | string;
@@ -77,7 +73,6 @@ export interface Notification {
   time: string;
 }
 
-// 🌍 5. تايب الـ API Responses الموحد (للـ Pagination والـ Meta)
 export interface ApiResponse<T> {
   data: T[];
   meta: {
@@ -93,18 +88,38 @@ export interface QueryArgs {
   search?: string;
   category?: string;
   userId?: number;
+  all?: boolean;
+  status?: string;
 }
 
-// interface ITable<TData> {
-//   getState: () => {
-//     columnFilters: ColumnFiltersState;
-//   };
-//   getColumn: (id: string) => {
-//     getFilterValue: () => unknown;
-//     setFilterValue: (value: unknown) => void;
-//   } | undefined;
-// }
+export type FilterInputType = "select" | "custom-select" | "range";
+
+export interface FilterColumnConfig {
+  id: string;
+  label: string;
+  type: FilterInputType;
+
+  options?: { value: string; label: string }[];
+
+  rangeConfig?: {
+    minPlaceholder?: string;
+    maxPlaceholder?: string;
+  };
+}
 
 export interface ITable<TData> {
   table: TableInstance<TData>
+}
+export type TypeOfGiniricType = "custom-select" | "range" | "select";
+
+export interface FITERSType {
+  id: string;
+  label: string;
+  type: TypeOfGiniricType;
+  options?: { id: string; label: string }[];
+  rangeConfig?: {
+    minPlaceholder: string;
+    maxPlaceholder: string;
+    unit: string;
+  };
 }

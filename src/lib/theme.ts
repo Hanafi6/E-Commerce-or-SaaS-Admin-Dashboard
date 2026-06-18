@@ -1,15 +1,20 @@
+import { type LucideIcon } from 'lucide-react';
+
+import { Star, WavesArrowDown, Flower2, Sun } from 'lucide-react'
 export interface ColorTheme {
   id: string;
   name: string;
   preview: string;
   className: string;
+  icon: LucideIcon
 }
 
+
 export const COLOR_THEMES: ColorTheme[] = [
-  { id: "default", name: "النمط الرمادي الافتراضي", preview: "oklch(0.205 0 0)", className: "" },
-  { id: "ocean", name: "ثيم الأزرق المريح (Ocean Breeze)", preview: "oklch(0.614 0.222 254.8)", className: "theme-ocean" },
-  { id: "emerald", name: "ثيم الأخضر الزمردي (Emerald Garden)", preview: "oklch(0.627 0.194 149.2)", className: "theme-emerald" },
-  { id: "orange", name: "ثيم البرتقالي الدافئ (Retro Orange)", preview: "oklch(0.646 0.222 41.1)", className: "theme-orange" },
+  { id: "default", name: "النمط الرمادي الافتراضي", preview: "oklch(0.205 0 0)", className: "", icon: Star },
+  { id: "ocean", name: "ثيم الأزرق المريح (Ocean Breeze)", preview: "oklch(0.614 0.222 254.8)", className: "theme-ocean", icon: WavesArrowDown },
+  { id: "emerald", name: "ثيم الأخضر الزمردي (Emerald Garden)", preview: "oklch(0.627 0.194 149.2)", className: "theme-emerald", icon: Flower2 },
+  { id: "orange", name: "ثيم البرتقالي الدافئ (Retro Orange)", preview: "oklch(0.646 0.222 41.1)", className: "theme-orange", icon: Sun },
 ];
 
 const COLOR_THEME_KEY = "app-color-theme";
@@ -48,4 +53,5 @@ export function initTheme() {
 export function saveColorTheme(themeId: string) {
   localStorage.setItem(COLOR_THEME_KEY, themeId);
   applyColorTheme(themeId);
+  window.dispatchEvent(new CustomEvent("theme-changed"));
 }

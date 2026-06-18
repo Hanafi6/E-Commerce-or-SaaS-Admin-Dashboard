@@ -7,7 +7,8 @@
 
 :root {
   /* المتغيرات الخاصة بمشروعك (Light Mode) */
-  --text: #374151;               /* جعلناه رمادي غامق صريح (Gray 700) بدل الباهت */
+  --text: #374151;
+  /* جعلناه رمادي غامق صريح (Gray 700) بدل الباهت */
   --text-h: #030712;
   --bg: #fff;
   --border: oklch(0.922 0 0);
@@ -38,7 +39,8 @@
 
   /* متغيرات شاد سي ان (Light Mode) */
   --background: oklch(1 0 0);
-  --foreground: oklch(0.05 0 0); /* تغميق الـ Foreground صريح */
+  --foreground: oklch(0.05 0 0);
+  /* تغميق الـ Foreground صريح */
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -47,17 +49,24 @@
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.95 0 0);             /* خلفية الحقول الرمادية */
+  --muted: oklch(0.95 0 0);
+  /* خلفية الحقول الرمادية */
   --muted-foreground: oklch(0.35 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  /* 📊 باليتة ألوان التحليلات المخصصة - Light Mode */
+  --chart-1: oklch(0.6603 0.1455 258.88);
+  /* أخضر زمردي مريح للعين (الأساسي للـ Revenue أو الـ Views) */
+  --chart-2: oklch(0.6603 0.0518 292.76);
+  /* أزرق نيلي/محيطي (للمقارنات والـ Purchases) */
+  --chart-3: oklch(0.6603 0.1085 71.47);
+  /* برتقالي دافئ (لحالة الـ Pending أو الـ Warning) */
+  --chart-4: oklch(0.6603 0.2689 18.53);
+  /* بنفسجي هادئ وعصري */
+  --chart-5: oklch(0.6603 0.1628 151.94);
+  /* أحمر متناسق (لحالة الـ Failed أو الـ Destructive) */
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
@@ -69,22 +78,41 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+
 .theme-ocean {
   --primary: oklch(0.614 0.222 254.8);
   --sidebar-primary: oklch(0.614 0.222 254.8);
   /* دعم الخلفيات والـ Cards والـ Shadows في الـ Light Mode */
-  --background: oklch(0.98 0.01 250);      /* أبيض مائل للزرقة الخفيفة جداً مريح للعين */
+  --background: oklch(0.98 0.01 250);
+  /* أبيض مائل للزرقة الخفيفة جداً مريح للعين */
   --card: oklch(1 0 0);
   --border: oklch(0.92 0.01 250);
   --shadow: 0 10px 25px -5px rgba(15, 108, 242, 0.05), 0 8px 10px -6px rgba(15, 108, 242, 0.05);
+  /* 📊 ألوان الشارتس في ثيم الـ Ocean (Light Mode) */
+  --chart-1: oklch(0.614 0.222 254.8);
+  /* أزرق البحر الأساسي */
+  --chart-2: oklch(0.70 0.15 200);
+  /* فيروزي مائل للخضار للمقارنة */
+  --chart-3: oklch(0.65 0.20 300);
+
 }
+
 .dark.theme-ocean {
   --primary: oklch(0.55 0.2 250);
   --sidebar-primary: oklch(0.55 0.2 250);
-  --background: oklch(0.12 0.02 240);       /* كحلي ليلي داكن */
-  --card: oklch(0.15 0.02 240);            /* كروت بارزة بدرجة أفتح */
+  --background: oklch(0.12 0.02 240);
+  /* كحلي ليلي داكن */
+  --card: oklch(0.15 0.02 240);
+  /* كروت بارزة بدرجة أفتح */
   --border: oklch(0.22 0.02 240);
   --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  /* 📊 ألوان الشارتس في ثيم الـ Ocean (Dark Mode) */
+  --chart-1: oklch(0.65 0.18 240);
+  /* أزرق نيون واضح */
+  --chart-2: oklch(0.75 0.12 190);
+  /* فيروزي مضيء */
+  --chart-3: oklch(0.70 0.15 290);
+  /* بنفسجي نيون */
 }
 
 /* ==========================================================================
@@ -94,18 +122,34 @@
   --primary: oklch(0.627 0.194 149.2);
   --sidebar-primary: oklch(0.627 0.194 149.2);
   /* دعم الخلفيات والـ Cards والـ Shadows في الـ Light Mode */
-  --background: oklch(0.98 0.01 150);      /* أبيض دافئ بنقاء الأعشاب */
+  --background: oklch(0.98 0.01 150);
+  /* أبيض دافئ بنقاء الأعشاب */
   --card: oklch(1 0 0);
   --border: oklch(0.92 0.01 150);
   --shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.05), 0 8px 10px -6px rgba(16, 185, 129, 0.05);
+  /* 📊 ألوان الشارتس في ثيم الـ Emerald (Light Mode) */
+  --chart-1: oklch(0.627 0.194 149.2);
+  /* أخضر زمردي */
+  --chart-2: oklch(0.65 0.15 100);
+  /* أخضر زيتوني مصفر */
+  --chart-3: oklch(0.60 0.12 200);
 }
+
 .dark.theme-emerald {
   --primary: oklch(0.627 0.194 149.2);
   --sidebar-primary: oklch(0.627 0.194 149.2);
-  --background: oklch(0.11 0.015 150);     /* زيتي داكن فخم جداً */
+  --background: oklch(0.11 0.015 150);
+  /* زيتي داكن فخم جداً */
   --card: oklch(0.14 0.018 150);
   --border: oklch(0.20 0.018 150);
   --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  /* 📊 ألوان الشارتس في ثيم الـ Emerald (Dark Mode) */
+  --chart-1: oklch(0.70 0.18 145);
+  /* أخضر نيون فسفوري للدارك */
+  --chart-2: oklch(0.72 0.14 95);
+  /* فستقي دافئ */
+  --chart-3: oklch(0.68 0.15 190);
+  /* تيل مضيء */
 }
 
 /* ==========================================================================
@@ -115,18 +159,36 @@
   --primary: oklch(0.646 0.222 41.1);
   --sidebar-primary: oklch(0.646 0.222 41.1);
   /* دعم الخلفيات والـ Cards والـ Shadows في الـ Light Mode */
-  --background: oklch(0.985 0.01 45);      /* درجة عاجية دافئة وناعمة */
+  --background: oklch(0.985 0.01 45);
+  /* درجة عاجية دافئة وناعمة */
   --card: oklch(1 0 0);
   --border: oklch(0.93 0.01 45);
   --shadow: 0 10px 25px -5px rgba(249, 115, 22, 0.05), 0 8px 10px -6px rgba(249, 115, 22, 0.05);
+
+  /* 📊 ألوان الشارتس في ثيم الـ Orange (Light Mode) */
+  --chart-1: oklch(0.646 0.222 41.1);
+  /* برتقالي ريترو */
+  --chart-2: oklch(0.72 0.18 65);
+  /* أصفر خردلي دافئ */
+  --chart-3: oklch(0.55 0.22 25);
+  /* بني محمر تيراميسو */
 }
+
 .dark.theme-orange {
   --primary: oklch(0.646 0.222 41.1);
   --sidebar-primary: oklch(0.646 0.222 41.1);
-  --background: oklch(0.12 0.012 45);      /* أسود دافئ مائل للترابي الداكن */
+  --background: oklch(0.12 0.012 45);
+  /* أسود دافئ مائل للترابي الداكن */
   --card: oklch(0.15 0.015 45);
   --border: oklch(0.21 0.015 45);
   --shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+  /* 📊 ألوان الشارتس في ثيم الـ Orange (Dark Mode) */
+  --chart-1: oklch(0.70 0.20 45);
+  /* برتقالي نيون متوهج */
+  --chart-2: oklch(0.78 0.16 70);
+  /* أصفر ذهبي مضيء */
+  --chart-3: oklch(0.62 0.18 28);
+  /* أحمر مرجاني دافئ */
 }
 
 
@@ -170,11 +232,17 @@
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
+  /* 📊 باليتة ألوان التحليلات المخصصة - Dark Mode */
+  --chart-1: oklch(0.64 0.0933 245.12);
+  /* أخضر مضيء ناعم متناسق مع الدارك */
+  --chart-2: oklch(0.64 0.1973 42.88);
+  /* أزرق سماوي عميق واضح */
+  --chart-3: oklch(0.6603 0.1998 308.65);
+  /* برتقالي ذهبي دافئ */
+  --chart-4: oklch(0.6603 0.2121 360);
+  /* بنفسجي نيون هادئ */
+  --chart-5: oklch(0.6603 0.1998 129.71);
+  /* أحمر مرجاني واضح وبارز للـ Errors */
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.488 0.243 264.376);
@@ -253,7 +321,7 @@
   --color-border: var(--border);
   --color-background: var(--background);
   --color-card: var(--card);
-  
+
   /* 💡 السطر ده بيخلي كلاس الـ shadow يقرأ من متغير الثيم النشط فوراً */
   --shadow-md: var(--shadow);
 }
@@ -278,10 +346,12 @@ body {
 }
 
 #root {
-  width: 100%;             /* 💡 خليناه يأخذ الشاشة كلها بدل العرض الثابت */
+  width: 100%;
+  /* 💡 خليناه يأخذ الشاشة كلها بدل العرض الثابت */
   max-width: 100%;
   margin: 0;
-  text-align: right;       /* المحاذاة الافتراضية تكون يمين متوافقة مع العربي */
+  text-align: right;
+  /* المحاذاة الافتراضية تكون يمين متوافقة مع العربي */
   min-height: 100svh;
   display: flex;
   flex-direction: column;
