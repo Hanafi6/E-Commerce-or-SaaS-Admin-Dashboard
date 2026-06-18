@@ -12,7 +12,7 @@ export const orderApi = createApi({
     getOrders: builder.query<Order[], QueryArgs | void>({
       query: (params) => {
         return {
-          url: "orders",
+          url: "/orders",
           method: "GET",
           params: {
             page: params?.page || 1,
