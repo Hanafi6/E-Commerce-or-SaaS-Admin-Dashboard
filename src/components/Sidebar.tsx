@@ -9,6 +9,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
 
@@ -17,7 +18,7 @@ import { useTranslation } from "react-i18next";
 
 import { Link, useLocation } from "react-router-dom";
 
-import { LayoutDashboard, type LucideIcon } from 'lucide-react';
+import { LayoutDashboard, X, type LucideIcon } from 'lucide-react';
 import React from "react";
 
 interface ISidebarItem {
@@ -40,8 +41,9 @@ const AppSidebar = React.memo(function AppSidebar({ items }: AppSidebarProps) {
 
   return (
     <Sidebar side={sidebarSide} className="border-e opacity-[90%] border-border fixed h-screen z-50">
-      <SidebarHeader className="h-16 flex items-center justify-center border-b border-border px-6">
+      <SidebarHeader className="h-16 flex flex-row items-center justify-around border-b border-border px-6">
         <LayoutDashboard />
+        <SidebarTrigger />
       </SidebarHeader>
 
       <SidebarContent className="bg-card">

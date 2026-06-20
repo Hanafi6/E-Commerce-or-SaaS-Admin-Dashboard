@@ -1,7 +1,7 @@
 import { useState, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-// import { useGetUsersQuery, useCreateUserMutation } from '@/redux/services/pokemon'
+import { useGetUsersQuery, useAddUserMutation } from '@/redux/services/userSlice'
 import { userFormSchema, UserFormValues } from '@/validations/authLogin'
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
@@ -20,7 +20,9 @@ function useDebounce(value: string, delay: number) {
 
 function UserFormDialog() {
     const [open, setOpen] = useState(false)
-    const [createUser, { isLoading }] = useCreateUserMutation()
+    const [createUser, { isLoading }] = useAddUserMutation();
+
+    console.log()
 
     const form = useForm<UserFormValues>({
         resolver: zodResolver(userFormSchema),
@@ -28,19 +30,18 @@ function UserFormDialog() {
     })
 
     const onSubmit = async (data: UserFormValues) => {
-        try {
-            await createUser(data).unwrap()
-            form.reset()
-            setOpen(false)
-        } catch (error) {
-            console.error("فشل في إضافة المستخدم:", error)
-        }
+        // try {
+        //     await createUser(data).unwrap()
+        //     form.reset()
+        //     setOpen(false)
+        // } catch (error) {
+        //     console.error("فشل في إضافة المستخدم:", error)
+        // }
     }
 
     return (
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
-                {/* هنا واخد bg-primary أوتوماتيك من شاد سي ان */}
                 <Button variant="default" className="bg-primary text-primary-foreground hover:bg-primary/90">إضافة مستخدم جديد +</Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[425px] bg-background border-border text-foreground">

@@ -1,7 +1,9 @@
+@import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/geist";
-@import "tailwindcss";
+
+@import "@fontsource/ibm-plex-sans-arabic";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -82,17 +84,12 @@
 .theme-ocean {
   --primary: oklch(0.614 0.222 254.8);
   --sidebar-primary: oklch(0.614 0.222 254.8);
-  /* دعم الخلفيات والـ Cards والـ Shadows في الـ Light Mode */
   --background: oklch(0.98 0.01 250);
-  /* أبيض مائل للزرقة الخفيفة جداً مريح للعين */
   --card: oklch(1 0 0);
   --border: oklch(0.92 0.01 250);
   --shadow: 0 10px 25px -5px rgba(15, 108, 242, 0.05), 0 8px 10px -6px rgba(15, 108, 242, 0.05);
-  /* 📊 ألوان الشارتس في ثيم الـ Ocean (Light Mode) */
   --chart-1: oklch(0.614 0.222 254.8);
-  /* أزرق البحر الأساسي */
   --chart-2: oklch(0.70 0.15 200);
-  /* فيروزي مائل للخضار للمقارنة */
   --chart-3: oklch(0.65 0.20 300);
 
 }
@@ -115,9 +112,6 @@
   /* بنفسجي نيون */
 }
 
-/* ==========================================================================
-   🍏 2. ثيم الأخضر الزمردي (Emerald Garden)
-   ========================================================================== */
 .theme-emerald {
   --primary: oklch(0.627 0.194 149.2);
   --sidebar-primary: oklch(0.627 0.194 149.2);
@@ -152,9 +146,6 @@
   /* تيل مضيء */
 }
 
-/* ==========================================================================
-   🍊 3. ثيم البرتقالي الدافئ (Retro Orange)
-   ========================================================================== */
 .theme-orange {
   --primary: oklch(0.646 0.222 41.1);
   --sidebar-primary: oklch(0.646 0.222 41.1);

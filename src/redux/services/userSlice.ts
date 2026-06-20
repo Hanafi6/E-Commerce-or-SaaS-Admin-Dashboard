@@ -17,7 +17,7 @@ export const usersSlice = createApi({
                 const isGetAll = params?.all
 
                 return {
-                    url: "/users", // 👈 حطينا الـ / هنا صريحة
+                    url: "/users",
                     method: "GET",
                     params: {
                         page: isGetAll ? undefined : (params?.page || 1),
@@ -41,7 +41,6 @@ export const usersSlice = createApi({
                 method: "POST",
                 body: newUser,
             }),
-            // 👈 أول ما الـ Mutation دي تنجح، الـ RTK Query هيفهم إن الـ LIST اتمسحت وهيجيب الجديد أوتوماتيك
             invalidatesTags: [{ type: "Users", id: "LIST" }],
         })
     }),

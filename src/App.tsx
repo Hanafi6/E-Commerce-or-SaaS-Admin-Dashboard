@@ -40,9 +40,20 @@ export default function App() {
 
   useEffect(() => {
     const dir = i18n.dir(i18n.language);
-    document.documentElement.dir = dir; // ده بيغير الـ dir بتاع الـ html tag
-    document.documentElement.lang = i18n.language; // بيغير اللغة
+    document.documentElement.dir = dir;
+    document.documentElement.lang = i18n.language;
   }, [i18n, i18n.language]);
 
-  return <RouterProvider router={router} />;
+  return (
+    <div className="relative min-h-screen w-full">
+      <div
+        className="absolute inset-0 bg-[url('/background1.avif')] bg-cover bg-center bg-no-repeat opacity-50 dark:opacity-30"
+        style={{
+          backgroundAttachment: 'fixed'
+        }}
+      />
+
+      <RouterProvider router={router} />
+    </div>
+  )
 }

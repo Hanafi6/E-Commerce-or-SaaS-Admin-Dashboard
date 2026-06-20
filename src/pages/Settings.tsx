@@ -17,7 +17,6 @@ import { useDashboardActions } from "@/redux/Selectors/useDashboardActions";
 const LANGUAGES = [
   { id: "ar", name: "العربية", native: "العربية" },
   { id: "en", name: "English", native: "English" },
-  { id: "fr", name: "Français", native: "Français" },
 ];
 
 export default function Settings() {
@@ -72,17 +71,16 @@ export default function Settings() {
               <Monitor className="w-4 h-4 text-muted-foreground" />
               <h3 className="text-sm font-bold text-foreground">{t("General & Interface")}</h3>
             </div>
-            <div className="space-y-1.5">
+            <div className="space-y-1.5 relative">
               <Label className="text-xs text-muted-foreground font-medium">{t("Platform Name")}</Label>
               <Input value={platformName} onChange={(e) => setPlatformName(e.target.value)} className=" border-border/40 text-xs h-9 text-center font-mono text-foreground" />
             </div>
-            <div className="space-y-1.5 relative">
-              <Label className="text-xs text-muted-foreground font-medium">{t("Default Language")}</Label>
+            <div className="bg-card/50 border border-border/60 rounded-xl p-5 backdrop-blur-md flex flex-col justify-between space-y-4 relative z-50">
               <button type="button" onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)} className="w-full bg-primary text-accent border border-border/40 text-xs h-9 px-3 rounded-md flex items-center justify-between  font-mono">
                 <span>{LANGUAGES.find(l => l.id === currentLang)?.name}</span>
               </button>
               {isLangDropdownOpen && (
-                <div className="absolute z-50 top-[62px] left-0 w-full  border border-border/60 rounded-md overflow-hidden font-mono text-xs">
+                <div className="absolute bg-background z-500 top-[62px] left-0 w-full border border-border/60 rounded-md overflow-hidden font-mono text-xs">
                   {LANGUAGES.map((lang) => (
                     <div key={lang.id} onClick={() => handleLanguageChange(lang.id)} className={`p-2.5 text-center cursor-pointer ${currentLang === lang.id ? "bg-primary/10 text-primary font-bold" : "text-muted-foreground"}`}>
                       {lang.native}
