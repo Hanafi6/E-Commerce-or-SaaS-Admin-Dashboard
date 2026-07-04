@@ -1,6 +1,7 @@
 import { Sun, Moon, Bell } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { RoleBadge } from "@/components/RoleSwitcher";
 
 
 interface NavbarProps {
@@ -32,6 +33,7 @@ function Navbar({ pageTitle }: NavbarProps) {
 
 
       <div className="flex items-center gap-3">
+        <RoleBadge />
 
         <button
           onClick={() => setIsDark(!isDark)}

@@ -18,7 +18,7 @@ import { useTranslation } from "react-i18next";
 
 import { Link, useLocation } from "react-router-dom";
 
-import { LayoutDashboard, X, type LucideIcon } from 'lucide-react';
+import { LayoutDashboard, type LucideIcon } from 'lucide-react';
 import React from "react";
 
 interface ISidebarItem {

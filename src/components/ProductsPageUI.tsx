@@ -1,12 +1,16 @@
 import { Plus, Search, Loader2, AlertCircle } from "lucide-react";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
+import { useMemo, useState } from "react";
+import { ColumnDef } from "@tanstack/react-table";
 import { FITERSType, Product } from "@/types";
 import SearchBar from "./SearchBar";
 import { CustomTable } from "@/components/CustomTable";
 import { TablePagination } from "@/components/TablePagination";
 import { useCustomTable } from "@/hooks/useCustomTable";
 import { priceFilterFn, stockFilterFn } from "@/hooks/SomeHooks";
+import { usePermissions } from "@/hooks/usePermissions";
+import TableRowActions from "./TableRowActions";
 
 import DashboardHeader from "@/components/sub-components";
 
@@ -77,10 +81,41 @@ export default function ProductsPageUI({
     isArabicSearch = false,
 }: ProductsPageUIProps) {
 
+    const { can, canAny } = usePermissions();
+    const [actionMessage, setActionMessage] = useState<string | null>(null);
+
+    const showActionsColumn = canAny(['products:edit', 'products:delete']) || !can('products:edit');
+
+    const handleTableAction = (action: string, label: string) => {
+        setActionMessage(`${action}: ${label}`);
+        window.setTimeout(() => setActionMessage(null), 2500);
+    };
+
+    const actionColumns = useMemo<ColumnDef<Product, unknown>[]>(() => {
+        if (!showActionsColumn) return [];
+
+        return [{
+            id: 'actions',
+            header: 'إجراءات',
+            enableSorting: false,
+            cell: ({ row }) => (
+                <TableRowActions
+                    itemLabel={row.original.name}
+                    editPermission="products:edit"
+                    deletePermission="products:delete"
+                    onEdit={(label) => handleTableAction('تعديل المنتج', label)}
+                    onDelete={(label) => handleTableAction('حذف المنتج', label)}
+                    onView={(label) => handleTableAction('عرض المنتج', label)}
+                />
+            ),
+        }];
+    }, [showActionsColumn]);
+
     const { table } = useCustomTable<Product>({
         data: products,
         columnKeys: PRODUCT_COLUMN_KEYS,
         skipColumns: ["image"],
+        extraColumns: actionColumns,
         autoFilterColumns: {
             price: { filterFn: "priceFilter", enableSorting: true },
             stock: { filterFn: "stockFilter", enableSorting: true },
@@ -116,8 +151,9 @@ export default function ProductsPageUI({
                     title={TitlePage}
                     description={description}
                     onRefetch={onRefetch}
-                    actionButtonText="Add User"
-                    // onActionClick={handleAddUser}
+                    actionButtonText="Add Product"
+                    showActionButton={can('products:create')}
+                    onActionClick={() => handleTableAction('إضافة منتج', 'نموذج جديد')}
                     actionIcon={<Plus size={14} />}
 
                 />
@@ -129,6 +165,13 @@ export default function ProductsPageUI({
                     />
                 </DashboardHeader.Content>
             </DashboardHeader>
+
+            {actionMessage && (
+                <div className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-2 text-xs text-primary">
+                    {actionMessage} — وضع تجريبي
+                </div>
+            )}
+
             <div className="border border-border rounded-2xl min-h-0 min-w-0 bg-transparent p-4 relative shadow-sm">
 
                 {isFetching && !isLoading && (

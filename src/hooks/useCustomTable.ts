@@ -25,6 +25,7 @@ interface UseCustomTableProps<TData> {
     data: TData[];
     columnKeys: (keyof TData)[];
     skipColumns?: (keyof TData)[];
+    extraColumns?: ColumnDef<TData, any>[];
 
     autoFilterColumns?: AutoColumnConfig<TData>;
     filterFns?: Record<string, FilterFn<TData>>;
@@ -38,6 +39,7 @@ export function useCustomTable<TData extends Record<string, any>>({
     data = [],
     columnKeys,
     skipColumns = [],
+    extraColumns = [],
     autoFilterColumns = {},
     filterFns = {},
     customCells = {},
@@ -66,8 +68,9 @@ export function useCustomTable<TData extends Record<string, any>>({
                     filterFn: filterConfig?.filterFn as any,
                 };
                 return column;
-            });
-    }, [columnKeys, skipColumns, autoFilterColumns, customCells]);
+            })
+            .concat(extraColumns);
+    }, [columnKeys, skipColumns, extraColumns, autoFilterColumns, customCells]);
 
     const table = useReactTable({
         data,

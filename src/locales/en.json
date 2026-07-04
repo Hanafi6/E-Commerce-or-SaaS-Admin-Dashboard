@@ -47,7 +47,11 @@
   "Viewer": "Viewer",
   "Themes & Appearance": "Themes & Appearance",
   "Text contrast is managed automatically": "Text contrast is managed automatically",
-  "Methods and delegation": "Methods and delegation",
+  "Methods and delegation": "Permissions & delegation",
   "Data & Synchronization": "Data & Synchronization",
-  "Sync Data Manually": "Sync Data Manually"
+  "Sync Data Manually": "Sync Data Manually",
+  "Switch role to preview permissions": "Switch role to preview dashboard permissions",
+  "Role switch hint": "Admin sees all actions. Editor can edit products. Viewer is read-only.",
+  "Admin only action": "This action is available to administrators only",
+  "Current role": "Current role"
 }

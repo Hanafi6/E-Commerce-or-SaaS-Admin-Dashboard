@@ -2,9 +2,19 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import tailwindcss from '@tailwindcss/vite'
+import { visualizer } from "rollup-plugin-visualizer";
+
 
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [react(), tailwindcss(),
+  visualizer({
+    open: true,
+    gzipSize: true,
+  }),
+  ],
+  optimizeDeps: {
+    include: ['recharts'],
+  },
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
@@ -19,14 +29,15 @@ export default defineConfig({
     }
   },
   build: {
+    chunkSizeWarningLimit: 800,
     rolldownOptions: {
       output: {
         codeSplitting: {
           groups: [
             {
-              name: 'charts',
-              test: /node_modules\/chart\.js/,
-              priority: 40
+              name: "charts",
+              test: /node_modules\/(recharts|d3-)/,
+              priority: 40,
             },
             {
               name: 'motion',

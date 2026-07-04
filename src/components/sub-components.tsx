@@ -2,9 +2,8 @@
 import React from 'react'
 import { RefreshCcw } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils"; // الدالة الأساسية في شاد سي ان لدمج الكلاسات
+import { cn } from "@/lib/utils";
 
-// 1. تعريف الـ Variants باستخدام الـ cva بتاعة شاد سي ان
 const dashboardHeaderVariants = cva(
     "w-full flex flex-col bg-transparent text-foreground text-start",
     {
@@ -26,7 +25,6 @@ const dashboardHeaderVariants = cva(
     }
 );
 
-// دمج الـ Props الأصلية مع الـ Variants الـ تايبر سكريبت المنتجة من cva
 interface DashboardHeaderProps
     extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof dashboardHeaderVariants> {
@@ -50,7 +48,6 @@ export default function DashboardHeader({
     )
 }
 
-// --- 2. مكون العنوان والوصف (Title) ---
 interface HeaderTitleProps {
     title: string;
     description: string;
@@ -58,6 +55,7 @@ interface HeaderTitleProps {
     actionButtonText?: string;
     onActionClick?: () => void;
     actionIcon?: React.ReactNode;
+    showActionButton?: boolean;
 }
 
 DashboardHeader.Title = function DashboardHeaderTitle({
@@ -66,7 +64,8 @@ DashboardHeader.Title = function DashboardHeaderTitle({
     onRefetch,
     actionButtonText,
     onActionClick,
-    actionIcon
+    actionIcon,
+    showActionButton = true,
 }: HeaderTitleProps) {
     return (
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between w-full">
@@ -88,7 +87,7 @@ DashboardHeader.Title = function DashboardHeaderTitle({
                         <RefreshCcw className="h-4 w-4" />
                     </button>
                 )}
-                {actionButtonText && (
+                {actionButtonText && showActionButton && (
                     <button
                         onClick={onActionClick}
                         className="flex items-center gap-2 bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-xl text-xs font-semibold transition-all cursor-pointer h-9 shadow-sm active:scale-95"

@@ -13,6 +13,8 @@ import Input from "@/components/ui/Input";
 import { Label } from "@/components/ui/label";
 import { useTranslation } from "react-i18next";
 import { useDashboardActions } from "@/redux/Selectors/useDashboardActions";
+import RoleSwitcher from "@/components/RoleSwitcher";
+import { usePermissions } from "@/hooks/usePermissions";
 
 const LANGUAGES = [
   { id: "ar", name: "العربية", native: "العربية" },
@@ -22,6 +24,7 @@ const LANGUAGES = [
 export default function Settings() {
   const { t, i18n } = useTranslation();
   const { refreshAllData } = useDashboardActions();
+  const { can, role } = usePermissions();
 
   const [activeTheme, setActiveTheme] = useState<string>(() => {
     return localStorage.getItem("app-color-theme") || "default";
@@ -101,9 +104,19 @@ export default function Settings() {
               </h3>
             </div>
 
-            <Button disabled variant="outline" className="w-full bg-card/50 select-none border-border/40 text-xs h-9 font-mono hover:bg-muted text-foreground">
+            <Button
+              disabled={!can('settings:manage')}
+              variant="outline"
+              className="w-full bg-card/50 select-none border-border/40 text-xs h-9 font-mono hover:bg-muted text-foreground"
+            >
               {t("Change Password")}
             </Button>
+
+            {!can('settings:manage') && (
+              <p className="text-[10px] text-muted-foreground font-mono">
+                {t('Admin only action')}
+              </p>
+            )}
 
             <div className="space-y-1">
               <div className="text-[10px] text-left text-muted-foreground font-mono">Access level:</div>
@@ -225,11 +238,10 @@ export default function Settings() {
               <h3 className="text-sm font-bold text-foreground">{t("Methods and delegation")}</h3>
             </div>
 
-            <div className="grid grid-cols-3 gap-3 pt-2">
-            </div>
+            <RoleSwitcher />
 
-            <div className="text-[10px] text-muted-foreground text-center font-mono pt-3">
-              {t("Text contrast is managed automatically")}
+            <div className="text-[10px] text-muted-foreground text-center font-mono pt-1">
+              {t('Current role')}: {role}
             </div>
           </div>
         </div>

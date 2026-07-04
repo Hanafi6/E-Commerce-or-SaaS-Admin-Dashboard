@@ -47,7 +47,11 @@
   "Viewer": "مشاهد",
   "Themes & Appearance": "الثيمات والمظهر",
   "Text contrast is managed automatically": "يتم إدارة تباين النص تلقائياً",
-  "Methods and delegation": "",
+  "Methods and delegation": "الصلاحيات والتفويض",
   "Data & Synchronization": "البيانات والمزامنة",
-  "Sync Data Manually": "تحديث البيانات يدوياً"
+  "Sync Data Manually": "تحديث البيانات يدوياً",
+  "Switch role to preview permissions": "غيّر الدور لتجربة الصلاحيات في الداشبورد",
+  "Role switch hint": "الأدمن يرى كل الأزرار. المحرر يعدّل المنتجات فقط. المشاهد للقراءة فقط.",
+  "Admin only action": "هذا الإجراء متاح لمدير النظام فقط",
+  "Current role": "الدور الحالي"
 }

@@ -53,7 +53,7 @@ export default function Home() {
   const isGlobalLoading = ordersLoading || usersLoading || productsLoading;
 
   useEffect(() => {
-    if (isGlobalLoading) return;
+    if (ordersLoading) return;
 
     const node = containerRef.current;
     if (!node) return;
@@ -76,12 +76,12 @@ export default function Home() {
 
     observer.observe(node);
     return () => observer.disconnect();
-  }, [isGlobalLoading]);
+  }, [ordersLoading]);
 
   const calculatedStats = useMemo(() => {
     if (ordersLoading || usersLoading) return [];
 
-    let totalSales = orders.reduce((sum, order) => {
+    const totalSales = orders.reduce((sum, order) => {
       return order.status === "Paid" ? sum + (Number(order.totalPrice) || 0) : sum;
     }, 0);
 

@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom'
 import PageLoader from './pages/PageLoader'; // تأكد من مسار اللودر العالمي بتاعك
 import NotFound from './pages/NotFound';
 import { useTranslation } from 'react-i18next';
+import TestCharts from '@/pages/TestCharts';
 
 const Home = lazy(() => import('@/pages/Home'));
 const DashboardLayout = lazy(() => import('@/pages/DashboardLayout'));
@@ -25,6 +26,7 @@ const router = createBrowserRouter([
 
       { path: 'home', element: <Home /> },
       { path: 'products', element: <ProductsPage /> },
+      { path: 'test_charts', element: <TestCharts /> },
       { path: 'orders', element: <OrderPage /> },
       { path: 'users', element: <UsersPage /> },
       { path: 'settings', element: <SittingsPage /> },

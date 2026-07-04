@@ -61,8 +61,7 @@ export default function SearchBar<TData>({
         <div className="flex flex-col gap-3 bg-card p-4 rounded-xl border border-border w-full text-left" dir="ltr">
             <div className="flex flex-col sm:flex-row gap-3">
 
-                {/* Input Search */}
-                <div className="relative flex-1">
+                <div aria-label="Search" className="relative flex-1">
                     <Search className="absolute left-3 top-2.5 h-4 w-4 text-muted-foreground" />
                     <input
                         type="text"
@@ -72,8 +71,7 @@ export default function SearchBar<TData>({
                     />
                 </div>
 
-                {/* Advanced Filter Popover */}
-                <div className="flex flex-col items-stretch sm:items-start justify-start gap-2">
+                <article className="flex flex-col items-stretch sm:items-start justify-start gap-2">
                     <Popover>
                         <PopoverTrigger asChild>
                             <button
@@ -96,7 +94,6 @@ export default function SearchBar<TData>({
 
                             <hr className="border-border" />
 
-                            {/* روقان الـ Mapping هنا 👇 */}
                             <div className="space-y-4">
                                 {filterColumns.map((col) => {
                                     const column = table?.getColumn(col.id);
@@ -113,7 +110,6 @@ export default function SearchBar<TData>({
                                 })}
                             </div>
 
-                            {/* Reset Button */}
                             {columnFilters.length > 0 && (
                                 <button
                                     type="button"
@@ -126,7 +122,7 @@ export default function SearchBar<TData>({
                             )}
                         </PopoverContent>
                     </Popover>
-                </div>
+                </article>
             </div>
 
             <ActiveFilterBadges columnFilters={columnFilters} filterColumns={filterColumns} table={table} />

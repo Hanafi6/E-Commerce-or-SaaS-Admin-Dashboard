@@ -71,6 +71,8 @@ import { lazy, useMemo } from "react";
 const ThemeSwitcherWidget = lazy(() => import("@/components/ThemeSwitcherWidget"));
 
 import { useTranslation } from "react-i18next";
+import { usePermissions } from "@/hooks/usePermissions";
+import { ROUTE_PERMISSIONS } from "@/lib/permissions";
 
 
 
@@ -94,8 +96,15 @@ const TITLES = (t: (key: string) => string): Record<string, string> => ({
 
 export default function DashboardLayout() {
   const { t, i18n } = useTranslation();
+  const { can } = usePermissions();
 
-  const sidebarItems = useMemo(() => SIDEBAR_ITEMS(t), [t, i18n.language]);
+  const sidebarItems = useMemo(
+    () => SIDEBAR_ITEMS(t).filter((item) => {
+      const permission = ROUTE_PERMISSIONS[item.path];
+      return permission ? can(permission) : true;
+    }),
+    [t, i18n.language, can]
+  );
   const titles = useMemo(() => TITLES(t), [t, i18n.language]);
 
   return (

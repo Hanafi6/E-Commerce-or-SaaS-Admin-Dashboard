@@ -1,6 +1,8 @@
 
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { SerializedError } from "@reduxjs/toolkit";
+import { useMemo, useState } from "react";
+import { ColumnDef } from "@tanstack/react-table";
 import { useCustomTable } from "@/hooks/useCustomTable";
 import { FITERSType, User } from "@/types";
 import { TablePagination } from "./TablePagination";
@@ -9,6 +11,8 @@ import { AlertCircle, Loader2, Plus, Search } from "lucide-react";
 import SearchBar from "./SearchBar";
 import DashboardHeader from "./sub-components";
 import { customStatusFilter } from "@/hooks/SomeHooks";
+import { usePermissions } from "@/hooks/usePermissions";
+import TableRowActions from "./TableRowActions";
 
 interface UsersPageUIProps {
     Users: User[];
@@ -75,10 +79,41 @@ function UsersPageUI
         onPageChange
     }: UsersPageUIProps) {
 
+    const { can, canAny } = usePermissions();
+    const [actionMessage, setActionMessage] = useState<string | null>(null);
+
+    const showActionsColumn = canAny(['users:edit', 'users:delete']) || !can('users:edit');
+
+    const handleTableAction = (action: string, label: string) => {
+        setActionMessage(`${action}: ${label}`);
+        window.setTimeout(() => setActionMessage(null), 2500);
+    };
+
+    const actionColumns = useMemo<ColumnDef<User, unknown>[]>(() => {
+        if (!showActionsColumn) return [];
+
+        return [{
+            id: 'actions',
+            header: 'إجراءات',
+            enableSorting: false,
+            cell: ({ row }) => (
+                <TableRowActions
+                    itemLabel={row.original.name}
+                    editPermission="users:edit"
+                    deletePermission="users:delete"
+                    onEdit={(label) => handleTableAction('تعديل المستخدم', label)}
+                    onDelete={(label) => handleTableAction('حذف المستخدم', label)}
+                    onView={(label) => handleTableAction('عرض المستخدم', label)}
+                />
+            ),
+        }];
+    }, [showActionsColumn]);
+
     const { table } = useCustomTable<User>({
         data: Users as User[],
         columnKeys: USERS_COLUMN_KEYS,
         skipColumns: ["password", 'avatar'],
+        extraColumns: actionColumns,
         autoFilterColumns: {
             status: { filterFn: "customStatusFilter", enableSorting: false },
             role: { filterFn: "equals", enableSorting: false },
@@ -136,7 +171,8 @@ function UsersPageUI
                     description={description}
                     onRefetch={onRefetch}
                     actionButtonText="Add User"
-                    // onActionClick={handleAddUser}
+                    showActionButton={can('users:create')}
+                    onActionClick={() => handleTableAction('إضافة مستخدم', 'نموذج جديد')}
                     actionIcon={<Plus size={14} />}
 
                 />
@@ -150,6 +186,12 @@ function UsersPageUI
                     />
                 </DashboardHeader.Content>
             </DashboardHeader>
+
+            {actionMessage && (
+                <div className="rounded-xl border border-primary/30 bg-primary/10 px-4 py-2 text-xs text-primary">
+                    {actionMessage} — وضع تجريبي
+                </div>
+            )}
 
             <div className="border border-border rounded-2xl min-h-0 min-w-0 bg-transparent p-4 relative shadow-sm">
                 {/* الـ Overlay اللذيذ أثناء الـ Fetching الجانبي */}
