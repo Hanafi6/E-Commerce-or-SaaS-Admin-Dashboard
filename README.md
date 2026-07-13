@@ -1,4 +1,4 @@
-# Ahmed's Analytics Dashboard 🚀
+#  Analytics Dashboard 🚀
 
 A high-performance, production-ready Admin Dashboard built with React 19, TypeScript, and SOLID principles. Designed for scalability, maintainability, and seamless user experience.
 
@@ -33,4 +33,3 @@ data at
 
  All services are equipped
 ---
-*Built by Ahmed.*
